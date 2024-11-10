@@ -25,4 +25,7 @@ def transcription(seq: str)-> str:
     return seq.replace("T", "U")
 
 def reverse_complement(seq: str) -> str:
-    return ''.join([DNA_reverseComplement[letter] for letter in seq ])[::-1]
+    # return ''.join([DNA_reverseComplement[letter] for letter in seq ])[::-1]
+    # Other solution bit faster
+    mapping = str.maketrans("ACGT", "TGCA")
+    return seq.translate(mapping)[::-1]

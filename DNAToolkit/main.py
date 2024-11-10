@@ -14,4 +14,5 @@ print(f'[3] + DNA/RNA Transcription: {colored(dna.transcription(valid_seq))}\n')
 
 print(f"[4] + DNA String + Reverse Complement:\n5' {colored(valid_seq)} 3'")
 print(f"   {''.join(['|' for _ in range(len(valid_seq))])}")
-print(f"3' {colored(dna.reverse_complement(valid_seq))} 5'\n")
+print(f"3' {colored(dna.reverse_complement(valid_seq)[::-1])} 5' [Complement]")
+print(f"5' {colored(dna.reverse_complement(valid_seq))} 3' [Rev. complement] \n")
