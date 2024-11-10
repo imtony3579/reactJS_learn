@@ -3,7 +3,7 @@ import DNAToolkit as dna
 from utl import colored 
 import random
 
-radString = ''.join([random.choice(dna.Nucleotides) for _ in range(50)])
+radString = ''.join([random.choice(dna.Nucleotides) for _ in range(10)])
 
 valid_seq = dna.validateSeq(radString)
 
