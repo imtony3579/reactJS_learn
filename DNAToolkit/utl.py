@@ -1,6 +1,5 @@
-def colored(seq: str) -> str:
-
-    bcolor = {
+def colored(seq):
+    bcolors = {
         'A': '\033[92m',
         'C': '\033[94m',
         'G': '\033[93m',
@@ -9,12 +8,39 @@ def colored(seq: str) -> str:
         'reset': '\033[0;0m'
     }
 
-    tmpstr = ""
+    tmpStr = ""
 
     for nuc in seq:
-        if nuc in bcolor:
-            tmpstr += bcolor[nuc] + nuc
+        if nuc in bcolors:
+            tmpStr += bcolors[nuc] + nuc
         else:
-            tmpstr += bcolor['reset'] + nuc
-    
-    return tmpstr + '\33[0;0m'
+            tmpStr += bcolors['reset'] + nuc
+
+    return tmpStr + '\033[0;0m'
+
+
+def readTextFile(filePath):
+    with open(filePath, 'r') as f:
+        return "".join([l.strip() for l in f.readlines()])
+
+
+def writeTextFile(filePath, seq, mode='w'):
+    with open(filePath, mode) as f:
+        f.write(seq + '\n')
+
+
+def read_FASTA(filePath):
+    with open(filePath, 'r') as f:
+        FASTAFile = [l.strip() for l in f.readlines()]
+
+    FASTADict = {}
+    FASTALabel = ""
+
+    for line in FASTAFile:
+        if '>' in line:
+            FASTALabel = line
+            FASTADict[FASTALabel] = ""
+        else:
+            FASTADict[FASTALabel] += line
+
+    return FASTADict

@@ -1,33 +1,22 @@
-# DNA Tool set/Code testing file
-import DNAToolkit as dna
-from utl import colored 
-import random
+# DNA Toolset/Code testing file
 
-radString = ''.join([random.choice(dna.Nucleotides) for _ in range(50)])
+from bio_seq import bio_seq
+from utl import read_FASTA, readTextFile, writeTextFile
 
-valid_seq = dna.validateSeq(radString)
+test_dna = bio_seq()
+test_dna.generate_rnd_seq(40, "RNA")
 
-print(f'\nSequence: {colored(valid_seq)}\n')
-print(f'[1] + Sequence Length: {len(valid_seq)}\n')
-print(colored(f'[2] + Nucleotide Frequency: {dna.countNucFrequency(valid_seq)}\n'))
-print(f'[3] + DNA/RNA Transcription: {colored(dna.transcription(valid_seq))}\n')
+print(test_dna.get_seq_info())
+print(test_dna.nucleotide_frequency())
+print(test_dna.transcription())
+print(test_dna.reverse_complement())
+print(test_dna.gc_content())
+print(test_dna.gc_content_subsec())
+print(test_dna.translate_seq())
+print(test_dna.codon_usage('L'))
 
-print(f"[4] + DNA String + Reverse Complement:\n5' {colored(valid_seq)} 3'")
-print(f"   {''.join(['|' for _ in range(len(valid_seq))])}")
-print(f"3' {colored(dna.reverse_complement(valid_seq)[::-1])} 5' [Complement]")
-print(f"5' {colored(dna.reverse_complement(valid_seq))} 3' [Rev. complement] \n")
-
-print(f'[5] + GC content: {dna.gc_content(valid_seq)}%\n')
-print(f'[6] + GC content in Subsection k=5: {dna.gc_content_subset(valid_seq, k=5)}\n')
-
-print(f'[7] + Aminoacid sequence from DNA: {dna.translate_seq(valid_seq )}\n')
-print(f'[8] + Codon Frequency (L): {dna.codon_usage(valid_seq, "L")}\n')
-
-print(f'[9] + Reading Frames:')
-for i in dna.gen_reading_frame(valid_seq):
-    print(i)
+for rf in test_dna.gen_reading_frames():
+    print(rf)
 
 
-print(f'\n[10] + All prots in 6 open reading frames:')
-for prot in dna.all_proteins_from_orfs(valid_seq,0,0,True):
-    print(f'{prot}')
+print(test_dna.all_proteins_from_orfs())

@@ -1,6 +1,7 @@
-Nucleotides = ['A', 'C', 'G', 'T']
-
-DNA_reverseComplement = {"A":"T", "T":"A", "C":"G", "G":"C"}
+NUCLEOTIDE_BASE = {
+    "DNA": ["A", "T", "C", "G"],
+    "RNA": ["A", "U", "C", "G"]
+}
 
 DNA_Codons = {
     # 'M' - START, '_' - STOP
@@ -51,5 +52,3 @@ RNA_Codons = {
     "UAU": "Y", "UAC": "Y",
     "UAA": "_", "UAG": "_", "UGA": "_"
 }
-
-
