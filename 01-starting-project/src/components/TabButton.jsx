@@ -1,5 +1,5 @@
 
-export default function TabButton({children, onSelect}){
+export default function TabButton({children, onSelect, isSelected}){
     // document.querySelector("button").addEventListener("click", () =>{
     //     console.log("Button clicked!");
     // });  --> this is how it done in venilla JS when the button is clicked
@@ -14,7 +14,7 @@ export default function TabButton({children, onSelect}){
             of calling it because we want to react to handle the function execution 
             other wise it will be executed immediately when the component renders
              */}
-            <button onClick={onSelect}>{children}</button>
+            <button className={isSelected ? "active":""} onClick={onSelect}>{children}</button>
         </li>
     );
 }
